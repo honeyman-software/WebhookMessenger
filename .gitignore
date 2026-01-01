@@ -1,0 +1,15 @@
+# Visual Studio
+.vs/
+**/bin/
+**/obj/
+
+# User-specific
+*.user
+*.suo
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# App data / secrets
+data.json

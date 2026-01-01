@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WebhookMessenger (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WebhookMessenger (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
