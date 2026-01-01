@@ -1,19 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Window
     x:Class="WebhookMessenger.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WebhookMessenger"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="WebhookMessenger">
+    Title="Webhook-Messenger">
 
-    <Window.SystemBackdrop>
-        <MicaBackdrop />
-    </Window.SystemBackdrop>
+    <Grid x:Name="Root" Padding="16" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="12">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+            <TextBlock Text="Destination:" VerticalAlignment="Center"/>
+            <ComboBox Width="340"
+                      ItemsSource="{Binding Webhooks}"
+                      SelectedItem="{Binding SelectedWebhook, Mode=TwoWay}"
+                      DisplayMemberPath="Name"/>
 
-    <Grid>
+            <Button Content="Manage Webhooks" Click="ManageWebhooks_Click"/>
 
+            <TextBlock Text="Template:" Margin="20,0,0,0" VerticalAlignment="Center"/>
+            <ComboBox Width="260"
+                      ItemsSource="{Binding Templates}"
+                      SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}"
+                      DisplayMemberPath="Name"/>
+
+            <Button Content="Manage Templates" Click="ManageTemplates_Click"/>
+
+            <Button Content="Export" Margin="20,0,0,0" Click="Export_Click"/>
+            <Button Content="Import" Click="Import_Click"/>
+        </StackPanel>
+
+        <TabView Grid.Row="2">
+            <TabViewItem Header="Message">
+                <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+                    <CheckBox Content="Disable mentions" IsChecked="{Binding DisableMentions}"/>
+
+                    <TextBox Grid.Row="1"
+                             Text="{Binding MessageContent, Mode=TwoWay}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             PlaceholderText="Discord markdown supported: **bold**, `code`, > quote, ```code blocks```"
+                             Height="320"/>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="12">
+                        <TextBox Width="260" Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Username override (optional)"/>
+                        <TextBox Width="520" Text="{Binding AvatarUrl, Mode=TwoWay}" PlaceholderText="Avatar URL (optional)"/>
+                        <Button Content="Send"
+                                Command="{Binding SendCommand}"
+                                IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}, FallbackValue=True}"/>
+                    </StackPanel>
+                </Grid>
+            </TabViewItem>
+
+            <TabViewItem Header="Embeds (JSON)">
+                <TextBox Text="{Binding EmbedsJson, Mode=TwoWay}"
+                         AcceptsReturn="True"
+                         TextWrapping="NoWrap"
+                         FontFamily="Consolas"
+                         PlaceholderText="Paste embeds JSON here (array or object). Use [] for none."
+                         Height="600"/>
+            </TabViewItem>
+        </TabView>
+
+        <TextBlock Grid.Row="3"
+                   Text="{Binding StatusText}"
+                   Opacity="0.9"/>
     </Grid>
 </Window>
