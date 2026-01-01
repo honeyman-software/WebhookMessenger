@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+	Uri="file:///C:/Installers/WebhookMessenger/Beta/WebhookMessenger_arm64.appinstaller"
+	Version="0.9.1.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	<MainPackage
+		Name="6d70a85a-5d81-4766-bd23-98019ab3a020"
+		Version="0.9.1.0"
+		Publisher="CN=honey"
+		Uri="file:///C:/Installers/WebhookMessenger/Beta/WebhookMessenger_0.9.1.0_arm64_Test/WebhookMessenger_0.9.1.0_arm64.msix"
+		ProcessorArchitecture="arm64" />
+	<Dependencies>
+		<Package
+			Name="Microsoft.WindowsAppRuntime.1.8"
+			Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+			ProcessorArchitecture="arm64"
+			Uri="file:///C:/Installers/WebhookMessenger/Beta/WebhookMessenger_0.9.1.0_arm64_Test/Dependencies/arm64/Microsoft.WindowsAppRuntime.1.8.msix"
+			Version="8000.675.1142.0" />
+	</Dependencies>
+	<UpdateSettings>
+		<OnLaunch
+			HoursBetweenUpdateChecks="0" />
+	</UpdateSettings>
+</AppInstaller>
